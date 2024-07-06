@@ -6,3 +6,7 @@
 :root{
     --placeholder: 1;
 }
+body{
+    background-color: #FBFBFB;
+    font-family: 'Roboto', sans-serif;
+}
