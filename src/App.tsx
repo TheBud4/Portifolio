@@ -1,11 +1,12 @@
+import Header from "./components/Header";
+import Home from "./components/Home";
+
 export default function App() {
   
   return (
     <>
-      <header className="bg-malachite-500 w-full h-12">
-      </header>
-      <main></main>
-      <footer></footer>
+    <Header/>
+    <Home/>
     </>
   );
 }
