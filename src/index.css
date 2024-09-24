@@ -5,8 +5,11 @@
 
 :root{
     --placeholder: 1;
+    --cor-destaque: #263138;
+    --Texto: #445964;
 }
 body{
     background-color: #FBFBFB;
     font-family: 'Roboto', sans-serif;
+    font-weight: medium;
 }

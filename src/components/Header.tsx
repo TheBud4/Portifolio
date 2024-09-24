@@ -2,7 +2,7 @@ import Ticon from '/TraducaoIcon.svg';
 import logo from '/Logo.svg';
 export default function Header(){
     return (
-      <header className="flex items-center justify-around h-32">
+      <header className="flex items-center justify-around w-full h-32">
         <div className="flex items-center space-x-8">
             <div><img src={logo} alt="logo"/></div>
           <div className="text-2xl text-lightGray font-extrabold">Murilo Pistore</div>
