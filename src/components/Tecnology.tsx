@@ -5,7 +5,7 @@ interface TechnologyProps {
 
 const Technology: React.FC<TechnologyProps> = ({ icon, altText }) => {
     return (
-        <div>
+        <div className="size-16">
             <img src={icon} alt={altText} />
         </div>
     );

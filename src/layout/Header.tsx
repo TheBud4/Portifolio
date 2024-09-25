@@ -1,5 +1,5 @@
-import Ticon from '/TraducaoIcon.svg'; 
-import logo from '/Logo.svg';
+import Ticon from '/icons/TraducaoIcon.svg'; 
+import logo from '/icons/Logo.svg';
 export default function Header(){
     return (
       <header className="flex items-center justify-around w-full h-32">

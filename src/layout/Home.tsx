@@ -1,7 +1,7 @@
 import Home_art from "/Home_art.svg";
-import github from "/Git.svg";
-import linkedin from "/Linkedin.svg";
-import instagram from "/Instagram.svg";
+import github from "/icons/GitHub.svg";
+import linkedin from "/icons/Linkedin.svg";
+import instagram from "/icons/Instagram.svg";
 export default function Home() {
   return (
     <section className="w-full flex items-center justify-evenly px-8">

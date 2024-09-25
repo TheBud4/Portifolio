@@ -1,6 +1,7 @@
 import AboutMe from "./layout/AboutMe";
 import Header from "./layout/Header";
 import Home from "./layout/Home";
+import Portifolio from "./layout/Portifolio";
 
 export default function App() {
   
@@ -8,8 +9,8 @@ export default function App() {
     <div className=" w-full flex flex-col items-center justify-around gap-y-6">
       <Header />
       <Home />
-      <div className="divide-black"></div>
       <AboutMe />
+      <Portifolio />
     </div>
   );
 }
