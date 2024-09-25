@@ -1,11 +1,11 @@
-import AboutMe from "./components/AboutMe";
-import Header from "./components/Header";
-import Home from "./components/Home";
+import AboutMe from "./layout/AboutMe";
+import Header from "./layout/Header";
+import Home from "./layout/Home";
 
 export default function App() {
   
   return (
-    <div className=" w-full flex flex-col items-center justify-around">
+    <div className=" w-full flex flex-col items-center justify-around gap-y-6">
       <Header />
       <Home />
       <div className="divide-black"></div>
