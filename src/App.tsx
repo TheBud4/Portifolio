@@ -1,6 +1,7 @@
 import AboutMe from "./layout/AboutMe";
 import Header from "./layout/Header";
 import Home from "./layout/Home";
+import MyExperience from "./layout/MyExperience";
 import Portifolio from "./layout/Portifolio";
 
 export default function App() {
@@ -13,6 +14,7 @@ export default function App() {
       </div>
       <AboutMe />
       <Portifolio />
+      <MyExperience />
     </div>
   );
 }

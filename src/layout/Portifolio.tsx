@@ -1,89 +1,111 @@
 import { useEffect, useState } from "react";
 
-interface Project {
-  id: number;
+interface Repository {
   name: string;
-  html_url: string;
   description: string;
+  url: string;
+  languages: { edges: { node: { name: string } }[] };
 }
 
-const Portifolio = () => {
-
-  const [projects, setProjects] = useState<Project[]>([]);
-  const [filteredProjects, setFilteredProjects] = useState<Project[]>([]);
-  const [activeFilter, setActiveFilter] = useState("Todos");
+const Portfolio: React.FC = () => {
+  const [projects, setProjects] = useState<Repository[]>([]);
 
   useEffect(() => {
-    // Fazendo a chamada à API do GitHub
-    fetch("https://api.github.com/users/TheBud4/repos")
-      .then((response) => response.json())
-      .then((data) => {
-        setProjects(data);
-        setFilteredProjects(data);
+    const fetchPinnedRepositories = async () => {
+      const query = `
+        {
+          user(login: "TheBud4") {
+            pinnedItems(first: 6, types: REPOSITORY) {
+              edges {
+                node {
+                  ... on Repository {
+                    name
+                    description
+                    url
+                    languages(first: 5) {
+                      edges {
+                        node {
+                          name
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      `;
+
+      const response = await fetch("https://api.github.com/graphql", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer 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`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ query }),
       });
+
+      const result = await response.json();
+
+      const repositories = result.data.user.pinnedItems.edges.map(
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        (edge: any) => edge.node
+      );
+      setProjects(repositories);
+    };
+
+    fetchPinnedRepositories();
   }, []);
 
-  const filterProjects = (category: string) => {
-    setActiveFilter(category);
-    if (category === "Todos") {
-      setFilteredProjects(projects);
-    } else {
-      setFilteredProjects(
-        projects.filter((project) => project.name.includes(category))
-      );
-    }
-  };
-
   return (
-    <div className="p-10 w-full flex flex-col justify-between">
-      <div className="flex justify-between items-center mb-5">
-        <h1 className="text-4xl font-bold">Meus Projetos</h1>
-        <p>Estes são alguns dos trabalhos e projetos que já realizei</p>
+    <div className="flex flex-col gap-8 items-center w-full px-4">
+      <div className="flex justify-around w-full items-center text-justify">
+        <h2 className="text-5xl font-black text-darkGray leading-tight">
+          Meus <br />
+          <span className="text-lightGray">Projetos</span>
+        </h2>
+        <p className="text-lightGray font-medium mt-4">
+          Estes são alguns dos trabalhos e projetos que já realizei
+        </p>
       </div>
-      <FilterButtons activeFilter={activeFilter} onFilter={filterProjects} />
-      <div className="grid grid-cols-3 gap-4">
-        {filteredProjects.map((project) => (
-          <ProjectCard key={project.id} project={project} />
+      {/* Grid de Projetos */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-5xl">
+        {projects.map((project, index) => (
+          <div
+            key={index}
+            className="p-5 bg-white rounded-xl shadow-lg transform transition duration-500 hover:scale-105"
+          >
+            <h3 className="text-xl font-bold text-darkGray mb-2">
+              {project.name}
+            </h3>
+            <p className="text-lightGray mb-4">{project.description}</p>
+            <a
+              href={project.url}
+              className="text-darkGray font-semibold hover:underline"
+            >
+              Ver no GitHub
+            </a>
+            <div className="mt-4">
+              <strong className="block text-sm text-gray-500">
+                Linguagens:
+              </strong>
+              <div className="flex flex-wrap mt-1 gap-1">
+                {project.languages.edges.map((lang, idx) => (
+                  <span
+                    key={idx}
+                    className="mr-2 text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full"
+                  >
+                    {lang.node.name}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
         ))}
       </div>
     </div>
   );
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const FilterButtons = ({ activeFilter, onFilter }: any) => {
-  const filters = ["Todos", "Web App", "API", "Outros"];
-
-  return (
-    <div className="flex space-x-3 mb-5">
-      {filters.map((filter) => (
-        <button
-          key={filter}
-          onClick={() => onFilter(filter)}
-          className={`px-4 py-2 rounded-full ${
-            activeFilter === filter ? "bg-gray-800 text-white" : "bg-gray-300"
-          }`}
-        >
-          {filter}
-        </button>
-      ))}
-    </div>
-  );
-};
-
-const ProjectCard = ({ project }: { project: Project }) => (
-  <div className="p-5 bg-gray-200 rounded-lg shadow-lg">
-    <h2 className="text-xl font-semibold">{project.name}</h2>
-    <p className="mt-2">{project.description}</p>
-    <a
-      href={project.html_url}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="text-blue-500 mt-4 block"
-    >
-      Ver no GitHub
-    </a>
-  </div>
-);
-
-export default Portifolio;
+export default Portfolio;
