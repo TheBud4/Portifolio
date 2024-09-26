@@ -2,6 +2,8 @@ import Home_art from "/Home_art.svg";
 import github from "/icons/GitHub.svg";
 import linkedin from "/icons/Linkedin.svg";
 import instagram from "/icons/Instagram.svg";
+
+
 export default function Home() {
   return (
     <section className="w-full flex items-center justify-evenly px-8">
@@ -21,14 +23,14 @@ export default function Home() {
           Saiba mais sobre mim
         </button>
 
-        <div className="flex space-x-4">
+        <div className="flex space-x-6">
           <a href="https://github.com/TheBud4">
             <img src={github} alt="github" />
           </a>
-          <a href="">
+          <a href="https://www.linkedin.com/in/murilo-pistore-55153925b/">
             <img src={linkedin} alt="linkedin" />
           </a>
-          <a href="">
+          <a href="https://www.instagram.com/murilo_pistore/">
             <img src={instagram} alt="instagram" />
           </a>
         </div>

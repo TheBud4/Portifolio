@@ -6,9 +6,11 @@ import Portifolio from "./layout/Portifolio";
 export default function App() {
   
   return (
-    <div className=" w-full flex flex-col items-center justify-around gap-y-6">
-      <Header />
-      <Home />
+    <div className=" w-full flex flex-col items-center justify-around gap-y-32">
+      <div className="w-full">
+        <Header />
+        <Home />
+      </div>
       <AboutMe />
       <Portifolio />
     </div>
