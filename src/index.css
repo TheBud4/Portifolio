@@ -8,6 +8,9 @@
     --cor-destaque: #263138;
     --Texto: #445964;
 }
+html{
+    scroll-behavior: smooth;
+}
 body{
     background-color: #FBFBFB;
     font-family: 'Roboto', sans-serif;

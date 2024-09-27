@@ -11,7 +11,7 @@ import tailwind from "/icons/Tailwind.svg";
 
 export function AboutMe() {
   return (
-    <div className="flex flex-col items-center gap-y-16">
+    <div id="AboutMe" className="flex flex-col items-center gap-y-16">
       <img src={pfp} alt="foto de perfil" />
       <h1 className="text-lightGray font-black text-5xl">Sobre Mim</h1>
       <p className="text-lightGray text-xl text-center">

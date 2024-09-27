@@ -2,12 +2,37 @@ import Home_art from "/Home_art.svg";
 import github from "/icons/GitHub.svg";
 import linkedin from "/icons/Linkedin.svg";
 import instagram from "/icons/Instagram.svg";
+import { useEffect } from "react";
+import ScrollReveal from "scrollreveal";
 
 
 export default function Home() {
+
+ useEffect(() => {
+   // Configurações do ScrollReveal
+   ScrollReveal().reveal(".reveal-bottom", {
+     origin: "bottom", 
+     distance: "50px", 
+     duration: 1000, 
+     delay: 200,
+     opacity: 0,
+     reset: true,
+   });
+
+   ScrollReveal().reveal(".reveal-side", {
+     origin: "right", 
+     distance: "50px",
+     duration: 1000,
+     delay: 200,
+     opacity: 0,
+     reset: true,
+   });
+ }, []);
+ 
   return (
-    <section className="w-full flex items-center justify-evenly px-8">
-      <div className="h-full  flex flex-col gap-y-36">
+    <section id="Home" className="w-full flex items-center justify-evenly px-8">
+
+      <div className="h-full flex flex-col gap-y-36 reveal-bottom">
         <span className="border-darkGray border-l-4 px-4 text-xl">
           <div className="text-lightGray">
             <h1>Olá meu nome é</h1>
@@ -35,9 +60,10 @@ export default function Home() {
           </a>
         </div>
       </div>
-      <aside className="">
+      <aside className="reveal-side">
         <img src={Home_art} alt="arte da pagina inicial" />
       </aside>
     </section>
   );
 }
+

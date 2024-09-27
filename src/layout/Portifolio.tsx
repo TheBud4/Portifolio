@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import ScrollReveal from "scrollreveal";
 
 interface Repository {
   name: string;
@@ -10,9 +11,38 @@ interface Repository {
 const Portfolio: React.FC = () => {
   const [projects, setProjects] = useState<Repository[]>([]);
 
-  useEffect(() => {
-    const fetchPinnedRepositories = async () => {
-      const query = `
+useEffect(() => {
+  
+  // Configurações do ScrollReveal
+  ScrollReveal().reveal(".reveal-bottom", {
+    origin: "bottom",
+    distance: "50px",
+    duration: 1000,
+    delay: 200,
+    opacity: 0,
+    reset: false,
+  });
+
+  ScrollReveal().reveal(".reveal-left", {
+    origin: "left",
+    distance: "50px",
+    duration: 1000,
+    delay: 200,
+    opacity: 0,
+    reset: false,
+  });
+
+  ScrollReveal().reveal(".reveal-right", {
+    origin: "right",
+    distance: "50px",
+    duration: 1000,
+    delay: 200,
+    opacity: 0,
+    reset: false,
+  });
+
+  const fetchPinnedRepositories = async () => {
+    const query = `
         {
           user(login: "TheBud4") {
             pinnedItems(first: 6, types: REPOSITORY) {
@@ -37,40 +67,40 @@ const Portfolio: React.FC = () => {
         }
       `;
 
-      const response = await fetch("https://api.github.com/graphql", {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer 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`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ query }),
-      });
+    const response = await fetch("https://api.github.com/graphql", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer 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`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ query }),
+    });
 
-      const result = await response.json();
+    const result = await response.json();
 
-      const repositories = result.data.user.pinnedItems.edges.map(
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        (edge: any) => edge.node
-      );
-      setProjects(repositories);
-    };
+    const repositories = result.data.user.pinnedItems.edges.map(
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (edge: any) => edge.node
+    );
+    setProjects(repositories);
+  };
 
-    fetchPinnedRepositories();
-  }, []);
+  fetchPinnedRepositories();
+}, []);
 
   return (
-    <div className="flex flex-col gap-8 items-center w-full px-4">
+    <div id="Portifolio" className="flex flex-col gap-8 items-center w-full px-4 mb-32">
       <div className="flex justify-around w-full items-center text-justify">
-        <h2 className="text-5xl font-black text-darkGray leading-tight">
+        <h2 className="text-5xl font-black text-darkGray leading-tight reveal-left">
           Meus <br />
           <span className="text-lightGray">Projetos</span>
         </h2>
-        <p className="text-lightGray font-medium mt-4">
+        <p className="text-lightGray font-medium mt-4 reveal-right">
           Estes são alguns dos trabalhos e projetos que já realizei
         </p>
       </div>
       {/* Grid de Projetos */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-5xl">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-5xl reveal-bottom">
         {projects.map((project, index) => (
           <div
             key={index}
