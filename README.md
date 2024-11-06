@@ -14,7 +14,7 @@ Este é um projeto de portfólio desenvolvido utilizando Vite com TypeScript. O 
 ## Funcionalidades
 
 - **Apresentação de Projetos**: Exibição de projetos desenvolvidos com detalhes e links.
-- **Responsividade**: Layout adaptável para diferentes tamanhos de tela.
+- **Responsividade**: Layout adaptável para diferentes tamanhos de tela.(A Fazer)
 - **Desempenho**: Carregamento rápido e otimizado.
 
 ## Como Executar
