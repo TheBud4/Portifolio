@@ -11,21 +11,21 @@ import tailwind from "/icons/Tailwind.svg";
 
 export function AboutMe() {
   return (
-    <div id="AboutMe" className="flex flex-col items-center gap-y-16">
+    <div id="AboutMe" className="w-full flex flex-col items-center gap-y-16">
       <img src={pfp} alt="foto de perfil" />
-      <h1 className="text-lightGray font-black text-5xl">Sobre Mim</h1>
-      <p className="text-lightGray text-xl text-center">
+      <h1 className="text-lightGray font-black text-2xl sm:text-5xl">Sobre Mim</h1>
+      <p className="text-lightGray text-md sm:text-xl text-center">
         Meu nome é Murilo Pistore, sou um Desenvolvedor de Software em fase de
         aprendizado, 
         <br />
         moro em Medianeira-PR, Basil e estudo Ciências da
         Computação na Universidade Tecnológica Federal do Paraná - UTFPR
       </p>
-      <h2 className="text-lightGray font-black text-4xl">
+      <h2 className="text-lightGray font-black text-2xl sm:text-4xl">
         {" "}
         <span className="text-darkGray">Minhas</span> Tecnologias
       </h2>
-      <div className="flex gap-x-6">
+      <div className="w-full flex gap-2 justify-center flex-row flex-wrap sm:gap-x-4 sm:gap-y-0 ">
         <Technology icon={nodejs} altText="NodeJs" />
         <Technology icon={html} altText="Html5" />
         <Technology icon={css} altText="Css3" />
