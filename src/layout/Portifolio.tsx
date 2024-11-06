@@ -90,13 +90,13 @@ useEffect(() => {
 
   return (
     <div id="Portifolio" className="flex flex-col gap-8 items-center w-full px-4 mb-32">
-      <div className="flex justify-around w-full items-center text-justify">
+      <div className="flex flex-col gap-y-6 justify-center sm:justify-around w-full sm:items-center text-justify sm:flex-row ">
         <h2 className="text-5xl font-black text-darkGray leading-tight reveal-left">
           Meus <br />
           <span className="text-lightGray">Projetos</span>
         </h2>
         <p className="text-lightGray font-medium mt-4 reveal-right">
-          Estes são alguns dos trabalhos e projetos que já realizei
+          Estes são alguns dos trabalhos e projetos que já realizei.
         </p>
       </div>
       {/* Grid de Projetos */}
