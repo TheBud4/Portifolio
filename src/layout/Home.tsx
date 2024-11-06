@@ -30,7 +30,7 @@ export default function Home() {
  }, []);
  
   return (
-    <section id="Home" className="w-full flex items-center justify-evenly px-8">
+    <section id="Home" className="w-full flex flex-col items-center justify-evenly px-8 sm:flex-row ">
 
       <div className="h-full flex flex-col gap-y-36 reveal-bottom">
         <span className="border-darkGray border-l-4 px-4 text-xl">
@@ -60,7 +60,7 @@ export default function Home() {
           </a>
         </div>
       </div>
-      <aside className="reveal-side">
+      <aside className="reveal-side hidden sm:flex">
         <img src={Home_art} alt="arte da pagina inicial" />
       </aside>
     </section>
