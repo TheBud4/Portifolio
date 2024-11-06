@@ -1,4 +1,4 @@
-import Ticon from '/icons/TraducaoIcon.svg'; 
+//import Ticon from '/icons/TraducaoIcon.svg'; 
 import logo from '/icons/Logo.svg';
 
 export default function Header(){
@@ -28,11 +28,11 @@ export default function Header(){
         {/* <div>
             <a href="">Experiencia</a>
           </div> */}
-        <div>
+        {/* <div>
           <button>
             <img src={Ticon} alt="" />
           </button>
-        </div>
+        </div> */}
       </nav>
     </header>
   );

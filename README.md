@@ -1,30 +1,34 @@
-# React + TypeScript + Vite
+# Portfólio em ViteTS
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este é um projeto de portfólio desenvolvido utilizando Vite com TypeScript. O objetivo deste projeto é demonstrar habilidades em desenvolvimento web moderno, utilizando tecnologias de ponta para criar uma aplicação rápida e eficiente.
 
-Currently, two official plugins are available:
+## Tecnologias Utilizadas
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Vite**: Ferramenta de build extremamente rápida e moderna.
+- **TypeScript**: Superset do JavaScript que adiciona tipagem estática ao código.
+- **React**: Biblioteca para construção de interfaces de usuário.
+- **CSS Modules**: Para estilização modular e escopo local.
+- **PostCSS**: Ferramenta para transformar CSS com plugins.
+- **TailwindCSS**: Framework de CSS utilitário para estilização rápida e eficiente.
 
-## Expanding the ESLint configuration
+## Funcionalidades
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **Apresentação de Projetos**: Exibição de projetos desenvolvidos com detalhes e links.
+- **Responsividade**: Layout adaptável para diferentes tamanhos de tela.
+- **Desempenho**: Carregamento rápido e otimizado.
 
-- Configure the top-level `parserOptions` property like this:
+## Como Executar
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+1. Clone o repositório:
+  ```bash
+  git clone https://github.com/seu-usuario/portifolio-vite-ts.git
+  ```
+2. Instale as dependências:
+  ```bash
+  cd portifolio-vite-ts
+  npm install
+  ```
+3. Inicie o servidor de desenvolvimento:
+  ```bash
+  npm run dev
+  ```
