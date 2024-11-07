@@ -4,6 +4,7 @@ import linkedin from "/icons/Linkedin.svg";
 import instagram from "/icons/Instagram.svg";
 import { useEffect } from "react";
 import ScrollReveal from "scrollreveal";
+import curriculum from "/Curriculo.pdf";
 
 
 export default function Home() {
@@ -44,9 +45,13 @@ export default function Home() {
           </div>
           <div className="">Seja bem vindo ao meu portifólio</div>
         </span>
-        <button className="bg-darkGray text-background px-4 font-black py-2 rounded-lg w-2/3">
+        <a 
+         className="bg-darkGray cursor-pointer text-center text-background px-4 font-black py-2 rounded-lg w-2/3"
+         href={curriculum}
+         download
+         >
           Saiba mais sobre mim
-        </button>
+        </a>
 
         <div className="flex space-x-6">
           <a href="https://github.com/TheBud4">
