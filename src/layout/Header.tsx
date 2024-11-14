@@ -1,5 +1,5 @@
 //import Ticon from '/icons/TraducaoIcon.svg';
-import { AddressBook, Code, House, TextBolder } from "@phosphor-icons/react";
+import { AddressBook, Code, House } from "@phosphor-icons/react";
 import logo from "/icons/Logo.svg";
 
 export default function Header() {
@@ -45,7 +45,7 @@ export default function Header() {
     >
       <div className="flex items-center space-x-5">
         <div>
-          <img src={logo} alt="logo" />
+          <img src={logo} alt="logo"/>
         </div>
         <div className="text-xl text-lightGray font-extrabold">
           Murilo Pistore
