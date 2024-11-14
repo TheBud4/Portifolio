@@ -5,11 +5,10 @@ import Home from "./layout/Home";
 import Portifolio from "./layout/Portifolio";
 
 export default function App() {
-  
   return (
     <div className=" w-full flex flex-col items-center justify-around gap-y-16">
-        <Header />
-        <Home />
+      <Header />
+      <Home />
       <AboutMe />
       <Portifolio />
       {/* <MyExperience /> */}

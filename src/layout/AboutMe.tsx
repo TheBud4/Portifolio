@@ -14,7 +14,7 @@ export function AboutMe() {
     <div id="AboutMe" className="w-full flex flex-col items-center gap-y-16">
       <img src={pfp} alt="foto de perfil" />
       <h1 className="text-lightGray font-black text-2xl sm:text-5xl">Sobre Mim</h1>
-      <p className="text-lightGray text-md sm:text-xl text-center">
+      <p className="text-lightGray text-sm px-6 sm:text-xl text-center">
         Meu nome é Murilo Pistore, sou um Desenvolvedor de Software em fase de
         aprendizado, 
         <br />
