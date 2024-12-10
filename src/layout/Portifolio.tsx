@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import ScrollReveal from "scrollreveal";
 
+const token = import.meta.env.VITE_GITHUB_TOKEN;
 interface Repository {
   name: string;
   description: string;
@@ -70,7 +71,7 @@ useEffect(() => {
     const response = await fetch("https://api.github.com/graphql", {
       method: "POST",
       headers: {
-        Authorization: `Bearer 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`,
+        Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ query }),
