@@ -1,6 +1,11 @@
-# Portfólio em ViteTS
+# Portfolio
 
-Este é um projeto de portfólio desenvolvido utilizando Vite com TypeScript. O objetivo deste projeto é demonstrar habilidades em desenvolvimento web moderno, utilizando tecnologias de ponta para criar uma aplicação rápida e eficiente.
+![Portfolio](https://img.shields.io/badge/status-conclu%C3%ADdo-green) 
+![Licença MIT](https://img.shields.io/badge/licen%C3%A7a-MIT-blue) 
+
+## 🎨 Visão Geral
+
+Este é o repositório do **Portfolio**, um projeto desenvolvido com o objetivo de apresentar as minhas habilidades, experiências e projetos de uma forma visualmente atrativa e organizada.
 
 ## Tecnologias Utilizadas
 
