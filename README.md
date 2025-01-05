@@ -7,7 +7,7 @@
 
 Este é o repositório do **Portfolio**, um projeto desenvolvido com o objetivo de apresentar as minhas habilidades, experiências e projetos de uma forma visualmente atrativa e organizada.
 
-## Tecnologias Utilizadas
+## 🛠️ Tecnologias Utilizadas
 
 - **Vite**: Ferramenta de build extremamente rápida e moderna.
 - **TypeScript**: Superset do JavaScript que adiciona tipagem estática ao código.
@@ -22,18 +22,66 @@ Este é o repositório do **Portfolio**, um projeto desenvolvido com o objetivo 
 - **Responsividade**: Layout adaptável para diferentes tamanhos de tela.(A Fazer)
 - **Desempenho**: Carregamento rápido e otimizado.
 
-## Como Executar
 
-1. Clone o repositório:
-  ```bash
-  git clone https://github.com/seu-usuario/portifolio-vite-ts.git
-  ```
-2. Instale as dependências:
-  ```bash
-  cd portifolio-vite-ts
-  npm install
-  ```
-3. Inicie o servidor de desenvolvimento:
-  ```bash
-  npm run dev
-  ```
+## 🌐 Demonstração
+
+Veja o portfolio em ação acessando: [Portfolio Live](https://murilo-pistore.vercel.app/)
+
+1. **Clone este repositório:**
+
+   ```bash
+   git clone https://github.com/TheBud4/Portifolio.git
+   ```
+
+2. **Navegue até o diretório do projeto:**
+
+   ```bash
+   cd Portifolio
+   ```
+
+3. **Instale as dependências:**
+
+   ```bash
+   npm install
+   ```
+
+4. **Inicie o servidor de desenvolvimento:**
+
+   ```bash
+   npm start
+   ```
+
+5. **Acesse o projeto no navegador:**
+
+   ```
+   http://localhost:3000
+   ```
+
+## 📂 Estrutura do Projeto
+
+Abaixo está a estrutura principal do projeto:
+
+```plaintext
+Portifolio/
+├── src/
+│   ├── assets/          # Imagens e outros recursos estáticos
+│   ├── components/      # Componentes reutilizáveis
+│   ├── pages/           # Páginas do portfolio
+│   ├── styles/          # Estilização global e temas
+│   ├── App.tsx          # Componente principal
+│   └── index.tsx        # Ponto de entrada do aplicativo
+├── public/              # Arquivos públicos
+├── package.json         # Gerenciamento de dependências
+├── tsconfig.json        # Configuração do TypeScript
+└── README.md            # Documentação
+```
+
+
+## 📜 Licença
+
+Este projeto está licenciado sob a Licença MIT. Consulte o arquivo [LICENSE](LICENSE) para mais informações.
+
+---
+
+Feito com ❤️ por [TheBud4](https://github.com/TheBud4). Espero que este projeto inspire e ajude outros desenvolvedores! 😄
+
