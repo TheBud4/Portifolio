@@ -16,6 +16,7 @@ Este é o repositório do **Portfolio**, um projeto desenvolvido com o objetivo 
 - **PostCSS**: Ferramenta para transformar CSS com plugins.
 - **TailwindCSS**: Framework de CSS utilitário para estilização rápida e eficiente.
 
+
 ## Funcionalidades
 
 - **Apresentação de Projetos**: Exibição de projetos desenvolvidos com detalhes e links.
@@ -26,6 +27,11 @@ Este é o repositório do **Portfolio**, um projeto desenvolvido com o objetivo 
 ## 🌐 Demonstração
 
 Veja o portfolio em ação acessando: [Portfolio Live](https://murilo-pistore.vercel.app/)
+
+
+## ⚙️ Instalação e Uso
+
+Siga as etapas abaixo para executar o projeto localmente:
 
 1. **Clone este repositório:**
 
@@ -56,6 +62,7 @@ Veja o portfolio em ação acessando: [Portfolio Live](https://murilo-pistore.ve
    ```
    http://localhost:3000
    ```
+
 
 ## 📂 Estrutura do Projeto
 
