@@ -1,9 +1,23 @@
-//import Ticon from '/icons/TraducaoIcon.svg';
 import { AddressBook, Code, House } from "@phosphor-icons/react";
 import logo from "/icons/Logo.svg";
+import Ticon from "/icons/TraducaoIcon.svg";
+import { useLanguage } from "../context/LanguageContext";
 
 export default function Header() {
   const size = window.innerWidth;
+  const { t, toggleLanguage, language } = useLanguage();
+
+  const renderLanguageButton = () => (
+    <button
+      onClick={toggleLanguage}
+      aria-label={t.nav.toggleLabel}
+      title={t.nav.toggleLabel}
+      className="transition hover:opacity-75 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-darkGray"
+    >
+      <img src={Ticon} alt={t.nav.toggleLabel} className="h-8 w-8" />
+      <span className="sr-only">{language === "pt" ? "PT" : "EN"}</span>
+    </button>
+  );
 
   return size >= 640 ? (
     <header
@@ -20,22 +34,15 @@ export default function Header() {
       </div>
       <nav className="flex space-x-8 text-lightGray font-medium text-xl ">
         <div>
-          <a href="#Home">Home</a>
+          <a href="#Home">{t.nav.home}</a>
         </div>
         <div>
-          <a href="#AboutMe">Sobre Mim</a>
+          <a href="#AboutMe">{t.nav.about}</a>
         </div>
         <div>
-          <a href="#Portifolio">Projetos</a>
+          <a href="#Portifolio">{t.nav.projects}</a>
         </div>
-        {/* <div>
-            <a href="">Experiencia</a>
-          </div> */}
-        {/* <div>
-          <button>
-            <img src={Ticon} alt="" />
-          </button>
-        </div> */}
+        {renderLanguageButton()}
       </nav>
     </header>
   ) : (
@@ -45,13 +52,13 @@ export default function Header() {
     >
       <div className="flex items-center space-x-5">
         <div>
-          <img src={logo} alt="logo"/>
+          <img src={logo} alt="logo" />
         </div>
         <div className="text-xl text-lightGray font-extrabold">
           Murilo Pistore
         </div>
       </div>
-      <nav className="flex space-x-4 text-lightGray font-bold">
+      <nav className="flex items-center space-x-4 text-lightGray font-bold">
         <a href="#Home">
           <House size={32} />
         </a>
@@ -61,14 +68,7 @@ export default function Header() {
         <a href="#Portifolio">
           <Code size={32} />
         </a>
-        {/* <div>
-            <a href="">Experiencia</a>
-          </div> */}
-        {/* <div>
-          <button>
-            <img src={Ticon} alt="" />
-          </button>
-        </div> */}
+        {renderLanguageButton()}
       </nav>
     </header>
   );

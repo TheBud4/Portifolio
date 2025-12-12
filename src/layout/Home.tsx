@@ -1,56 +1,59 @@
-import Home_art from "/Home_art.svg";
-import github from "/icons/GitHub.svg";
-import linkedin from "/icons/Linkedin.svg";
-import instagram from "/icons/Instagram.svg";
 import { useEffect } from "react";
 import ScrollReveal from "scrollreveal";
+import { useLanguage } from "../context/LanguageContext";
 import curriculum from "/Curriculo.pdf";
-
+import Home_art from "/Home_art.svg";
+import github from "/icons/GitHub.svg";
+import instagram from "/icons/Instagram.svg";
+import linkedin from "/icons/Linkedin.svg";
 
 export default function Home() {
+  const { t } = useLanguage();
 
- useEffect(() => {
-   // Configurações do ScrollReveal
-   ScrollReveal().reveal(".reveal-bottom", {
-     origin: "bottom", 
-     distance: "50px", 
-     duration: 1000, 
-     delay: 200,
-     opacity: 0,
-     reset: true,
-   });
+  useEffect(() => {
+    // Configurações do ScrollReveal
+    ScrollReveal().reveal(".reveal-bottom", {
+      origin: "bottom",
+      distance: "50px",
+      duration: 1000,
+      delay: 200,
+      opacity: 0,
+      reset: true,
+    });
 
-   ScrollReveal().reveal(".reveal-side", {
-     origin: "right", 
-     distance: "50px",
-     duration: 1000,
-     delay: 200,
-     opacity: 0,
-     reset: true,
-   });
- }, []);
- 
+    ScrollReveal().reveal(".reveal-side", {
+      origin: "right",
+      distance: "50px",
+      duration: 1000,
+      delay: 200,
+      opacity: 0,
+      reset: true,
+    });
+  }, []);
+
   return (
-    <section id="Home" className="w-full flex flex-col items-center justify-evenly px-8 sm:flex-row ">
-
+    <section
+      id="Home"
+      className="w-full flex flex-col items-center justify-evenly px-8 sm:flex-row "
+    >
       <div className="h-full flex flex-col gap-y-36 reveal-bottom">
         <span className="border-darkGray border-l-4 px-4 text-xl">
           <div className="text-lightGray">
-            <h1>Olá meu nome é</h1>
+            <h1>{t.hero.greeting}</h1>
           </div>
           <div className="text-lightGray font-black text-5xl">
             Murilo
             <br />
             Pistore
           </div>
-          <div className="">Seja bem vindo ao meu portifólio</div>
+          <div className="">{t.hero.welcome}</div>
         </span>
-        <a 
-         className="bg-darkGray cursor-pointer text-center text-background px-4 font-black py-2 rounded-lg w-2/3"
-         href={curriculum}
-         download
-         >
-          Saiba mais sobre mim
+        <a
+          className="bg-darkGray cursor-pointer text-center text-background px-4 font-black py-2 rounded-lg max-w-64 hover:bg-gray-500 transition-colors"
+          href={curriculum}
+          download
+        >
+          {t.hero.cta}
         </a>
 
         <div className="flex space-x-6">
@@ -66,9 +69,8 @@ export default function Home() {
         </div>
       </div>
       <aside className="reveal-side hidden sm:flex">
-        <img src={Home_art} alt="arte da pagina inicial" />
+        <img src={Home_art} alt={t.hero.artAlt} />
       </aside>
     </section>
   );
 }
-

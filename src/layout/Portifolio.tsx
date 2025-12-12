@@ -1,62 +1,109 @@
 import { useEffect, useState } from "react";
 import ScrollReveal from "scrollreveal";
+import { useLanguage } from "../context/LanguageContext";
 
 const token = import.meta.env.VITE_GITHUB_TOKEN;
+const githubUser = "TheBud4";
+
+type LanguageEdge = { node: { name: string } };
+
 interface Repository {
   name: string;
   description: string;
   url: string;
-  languages: { edges: { node: { name: string } }[] };
+  languages: { edges: LanguageEdge[] };
 }
+
+type GraphQLPinnedEdge = {
+  node: {
+    name: string;
+    description: string;
+    url: string;
+    languages?: { edges?: LanguageEdge[] };
+  };
+};
+
+type PinnedServiceRepo = {
+  repo: string;
+  description: string;
+  link: string;
+  language?: string;
+};
+
+const normalizeFromGraphQL = (edges: GraphQLPinnedEdge[]): Repository[] =>
+  edges
+    .map((edge) => edge?.node)
+    .filter(
+      (node): node is GraphQLPinnedEdge["node"] => Boolean(node?.name && node.url)
+    )
+    .map((node) => ({
+      name: node.name,
+      description: node.description ?? "",
+      url: node.url,
+      languages: { edges: node.languages?.edges ?? [] },
+    }));
+
+const normalizeFromFallback = (repos: PinnedServiceRepo[]): Repository[] =>
+  repos.map((repo) => ({
+    name: repo.repo,
+    description: repo.description ?? "",
+    url: repo.link,
+    languages: {
+      edges: repo.language ? [{ node: { name: repo.language } }] : [],
+    },
+  }));
 
 const Portfolio: React.FC = () => {
   const [projects, setProjects] = useState<Repository[]>([]);
+  const { t } = useLanguage();
 
-useEffect(() => {
-  
-  // Configurações do ScrollReveal
-  ScrollReveal().reveal(".reveal-bottom", {
-    origin: "bottom",
-    distance: "50px",
-    duration: 1000,
-    delay: 200,
-    opacity: 0,
-    reset: false,
-  });
+  useEffect(() => {
+    ScrollReveal().reveal(".reveal-bottom", {
+      origin: "bottom",
+      distance: "50px",
+      duration: 1000,
+      delay: 200,
+      opacity: 0,
+      reset: false,
+    });
 
-  ScrollReveal().reveal(".reveal-left", {
-    origin: "left",
-    distance: "50px",
-    duration: 1000,
-    delay: 200,
-    opacity: 0,
-    reset: false,
-  });
+    ScrollReveal().reveal(".reveal-left", {
+      origin: "left",
+      distance: "50px",
+      duration: 1000,
+      delay: 200,
+      opacity: 0,
+      reset: false,
+    });
 
-  ScrollReveal().reveal(".reveal-right", {
-    origin: "right",
-    distance: "50px",
-    duration: 1000,
-    delay: 200,
-    opacity: 0,
-    reset: false,
-  });
+    ScrollReveal().reveal(".reveal-right", {
+      origin: "right",
+      distance: "50px",
+      duration: 1000,
+      delay: 200,
+      opacity: 0,
+      reset: false,
+    });
 
-  const fetchPinnedRepositories = async () => {
-    const query = `
-        {
-          user(login: "TheBud4") {
-            pinnedItems(first: 6, types: REPOSITORY) {
-              edges {
-                node {
-                  ... on Repository {
-                    name
-                    description
-                    url
-                    languages(first: 5) {
-                      edges {
-                        node {
-                          name
+    const fetchPinnedRepositories = async () => {
+      try {
+        if (token) {
+          const query = `
+            {
+              user(login: "${githubUser}") {
+                pinnedItems(first: 6, types: REPOSITORY) {
+                  edges {
+                    node {
+                      ... on Repository {
+                        name
+                        description
+                        url
+                        languages(first: 5) {
+                          edges {
+                            node {
+                              name
+                            }
+                          }
                         }
                       }
                     }
@@ -64,40 +111,60 @@ useEffect(() => {
                 }
               }
             }
+          `;
+
+          const response = await fetch("https://api.github.com/graphql", {
+            method: "POST",
+            headers: {
+              Authorization: `Bearer ${token}`,
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ query }),
+          });
+
+          const result = await response.json();
+
+          if (result?.errors?.length) {
+            throw new Error(result.errors[0].message);
+          }
+
+          const pinned = normalizeFromGraphQL(
+            result?.data?.user?.pinnedItems?.edges ?? []
+          );
+
+          if (pinned.length) {
+            setProjects(pinned);
+            return;
           }
         }
-      `;
 
-    const response = await fetch("https://api.github.com/graphql", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ query }),
-    });
+        const fallbackResponse = await fetch(
+          `https://gh-pinned-repos.egoist.dev/?username=${githubUser}`
+        );
 
-    const result = await response.json();
+        if (!fallbackResponse.ok) {
+          throw new Error("Falha ao buscar repositórios públicos");
+        }
 
-    const repositories = result.data.user.pinnedItems.edges.map(
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      (edge: any) => edge.node
-    );
-    setProjects(repositories);
-  };
+        const fallback = await fallbackResponse.json();
+        setProjects(normalizeFromFallback(fallback));
+      } catch (error) {
+        console.error("Erro ao buscar projetos do GitHub", error);
+      }
+    };
 
-  fetchPinnedRepositories();
-}, []);
+    fetchPinnedRepositories();
+  }, []);
 
   return (
     <div id="Portifolio" className="flex flex-col gap-8 items-center w-full px-4 mb-32">
       <div className="flex flex-col gap-y-6 justify-center sm:justify-around w-full sm:items-center text-justify sm:flex-row ">
         <h2 className="text-5xl font-black text-darkGray leading-tight reveal-left">
-          Meus <br />
-          <span className="text-lightGray">Projetos</span>
+          {t.portfolio.titlePrefix} <br />
+          <span className="text-lightGray">{t.portfolio.titleHighlight}</span>
         </h2>
         <p className="text-lightGray font-medium mt-4 reveal-right">
-          Estes são alguns dos trabalhos e projetos que já realizei.
+          {t.portfolio.subtitle}
         </p>
       </div>
       {/* Grid de Projetos */}
@@ -115,11 +182,11 @@ useEffect(() => {
               href={project.url}
               className="text-darkGray font-semibold hover:underline"
             >
-              Ver no GitHub
+              {t.portfolio.viewOnGithub}
             </a>
             <div className="mt-4">
               <strong className="block text-sm text-gray-500">
-                Linguagens:
+                {t.portfolio.languages}
               </strong>
               <div className="flex flex-wrap mt-1 gap-1">
                 {project.languages.edges.map((lang, idx) => (
