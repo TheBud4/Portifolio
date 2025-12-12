@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import ScrollReveal from "scrollreveal";
-import { useLanguage } from "../context/LanguageContext";
+import { useLanguage } from "../hooks/useLanguage";
 
 const token = import.meta.env.VITE_GITHUB_TOKEN;
 const githubUser = "TheBud4";

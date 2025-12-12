@@ -1,11 +1,21 @@
+import { useEffect, useState } from "react";
 import { AddressBook, Code, House } from "@phosphor-icons/react";
 import logo from "/icons/Logo.svg";
 import Ticon from "/icons/TraducaoIcon.svg";
-import { useLanguage } from "../context/LanguageContext";
+import { useLanguage } from "../hooks/useLanguage";
+
+const getIsDesktop = () =>
+  typeof window !== "undefined" ? window.innerWidth >= 640 : true;
 
 export default function Header() {
-  const size = window.innerWidth;
+  const [isDesktop, setIsDesktop] = useState(getIsDesktop);
   const { t, toggleLanguage, language } = useLanguage();
+
+  useEffect(() => {
+    const onResize = () => setIsDesktop(getIsDesktop());
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
 
   const renderLanguageButton = () => (
     <button
@@ -19,7 +29,7 @@ export default function Header() {
     </button>
   );
 
-  return size >= 640 ? (
+  return isDesktop ? (
     <header
       id="header"
       className="flex items-center bg-background justify-around w-full h-28 sticky top-0 z-20"
@@ -51,9 +61,6 @@ export default function Header() {
       className="flex items-center bg-background justify-around w-full h-28 sticky top-0 z-20"
     >
       <div className="flex items-center space-x-5">
-        <div>
-          <img src={logo} alt="logo" />
-        </div>
         <div className="text-xl text-lightGray font-extrabold">
           Murilo Pistore
         </div>

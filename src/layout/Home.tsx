@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import ScrollReveal from "scrollreveal";
-import { useLanguage } from "../context/LanguageContext";
+import { useLanguage } from "../hooks/useLanguage";
 import curriculum from "/Curriculo.pdf";
 import Home_art from "/Home_art.svg";
 import github from "/icons/GitHub.svg";

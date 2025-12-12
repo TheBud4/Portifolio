@@ -1,5 +1,5 @@
 import Technology from "../components/Tecnology";
-import { useLanguage } from "../context/LanguageContext";
+import { useLanguage } from "../hooks/useLanguage";
 import csharp from "/icons/Csharp.svg";
 import css from "/icons/CSS.svg";
 import docker from "/icons/Docker.svg";

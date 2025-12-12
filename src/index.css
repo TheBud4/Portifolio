@@ -15,4 +15,6 @@ body{
     background-color: #FBFBFB;
     font-family: 'Roboto', sans-serif;
     font-weight: medium;
+    max-width: 100vw;
+    overflow-x: hidden;
 }

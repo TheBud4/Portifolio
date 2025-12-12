@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useContext, useEffect, useMemo, useState } from "react";
+import { createContext, ReactNode, useEffect, useMemo, useState } from "react";
 
 type Language = "pt" | "en";
 
@@ -85,7 +85,7 @@ type LanguageContextValue = {
   t: Translations;
 };
 
-const LanguageContext = createContext<LanguageContextValue | undefined>(
+export const LanguageContext = createContext<LanguageContextValue | undefined>(
   undefined
 );
 
@@ -120,12 +120,4 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
       {children}
     </LanguageContext.Provider>
   );
-};
-
-export const useLanguage = () => {
-  const context = useContext(LanguageContext);
-  if (!context) {
-    throw new Error("useLanguage must be used within a LanguageProvider");
-  }
-  return context;
 };
